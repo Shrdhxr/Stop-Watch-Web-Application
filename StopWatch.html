@@ -1,0 +1,68 @@
+<html lang="en-US">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="SW.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stop Watch</title>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+
+<body>
+    <header>
+        <h1>Stop Watch - Prodigy InfoTech</h1>
+    </header>
+    <div id="SW">
+        <div id="disp">
+            <div>
+                <div id="hr">00:</div>
+                <div>hour</div>
+            </div>
+            <div>
+                <div id="min">00:</div>
+                <div>minute</div>
+            </div>
+            <div>
+                <div id="sec">00.</div>
+                <div>second</div>
+            </div>
+            <div>
+                <div id="msec">00</div>
+                <div></div>
+            </div>
+        </div>
+        <div id="buttons">
+            <div onclick="toggleTimer()" title="Toggle">
+                <span class="material-symbols-rounded" style="color:white;">play_arrow</span>
+            </div>
+            <div onclick="recordData()" title="Laps / Split">
+                <span class="material-symbols-rounded">tour</span>
+            </div>
+            <div onclick="resetTimer()" title="Reset">
+                <span class="material-symbols-outlined">restart_alt</span>
+            </div>
+        </div>
+        <div id="records">
+            <table id="recTable">
+                <tbody id="recData"></tbody>
+                <thead>
+                    <tr>
+                        <th>Laps</th>
+                        <th>Time</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+    <footer>
+
+        <p>Made By - Shreedhar Modi, Prodigy InfoTech Intern</p>
+    </footer>
+    <script src="StopWatch.js"></script>
+</body>
+
+</html>
