@@ -13,18 +13,24 @@ var playBtn = document.getElementsByClassName("material-symbols-rounded")[0];
 var lapButton = document.getElementById("lapButton");
 
 var lapCount = 0;
-var timeStamps = [];
-var timeDiff = [];
+var startTime;
+var pauseTime = 0;
+var totalPauseTime = 0;
 var lapRows = [];
+var previousLapTime = 0;
+var timeDiff = [];
 
 function toggleTimer() {
     if (run) {
         clearInterval(timer);
         playBtn.innerHTML = "play_arrow";
+        pauseTime = performance.now();
         run = false;
     } else {
-        if (timeStamps.length === 0) {
-            timeStamps.push(performance.now());
+        if (!startTime) {
+            startTime = performance.now();
+        } else {
+            totalPauseTime += performance.now() - pauseTime;
         }
         timer = setInterval(count, 10);
         playBtn.innerHTML = "pause";
@@ -46,9 +52,12 @@ function resetTimer() {
     run = false;
 
     lapCount = 0;
-    timeStamps = [];
-    timeDiff = [];
+    startTime = undefined;
+    pauseTime = 0;
+    totalPauseTime = 0;
+    previousLapTime = 0;
     lapRows = [];
+    timeDiff = [];
 
     var parent = document.getElementById("recData");
     while (parent.firstChild) {
@@ -58,19 +67,16 @@ function resetTimer() {
 }
 
 function count() {
-    hundredth += 1;
-    if (hundredth === 100) {
-        hundredth = 0;
-        seconds += 1;
-    }
-    if (seconds === 60) {
-        seconds = 0;
-        minutes += 1;
-    }
-    if (minutes === 60) {
-        minutes = 0;
-        hours += 1;
-    }
+    var elapsedTime = performance.now() - startTime - totalPauseTime;
+    var totalHundredths = Math.floor(elapsedTime / 10);
+
+    hours = Math.floor(totalHundredths / 360000);
+    totalHundredths %= 360000;
+    minutes = Math.floor(totalHundredths / 6000);
+    totalHundredths %= 6000;
+    seconds = Math.floor(totalHundredths / 100);
+    hundredth = totalHundredths % 100;
+
     disp(hundredth, seconds, minutes, hours);
 }
 
@@ -86,16 +92,8 @@ function recordData() {
 
     lapCount += 1;
     var currentTime = performance.now();
-    var lapTime;
-
-    if (lapCount === 1) {
-        lapTime = currentTime - timeStamps[0];
-    } else {
-        lapTime = currentTime - timeStamps[timeStamps.length - 1];
-    }
-
-    timeStamps.push(currentTime);
-    timeDiff.push(lapTime);
+    var lapTime = currentTime - startTime - totalPauseTime - previousLapTime;
+    previousLapTime += lapTime;
 
     var lapHours = Math.floor(lapTime / 3600000);
     lapTime %= 3600000;
@@ -127,6 +125,8 @@ function recordData() {
     newRow.appendChild(newTotal);
 
     lapRows.push(newRow);
+    timeDiff.push(lapTime);
+
     document.getElementById("recData").insertBefore(
         newRow,
         document.getElementById("recData").childNodes[0]
