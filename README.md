@@ -13,3 +13,7 @@ A clean and lightweight stopwatch application built using HTML, CSS, and JavaScr
 - Highlights fastest and slowest laps with color indicators
 
 - Accurate up to milliseconds
+
+
+https://github.com/user-attachments/assets/af0ba37e-b129-426d-8931-d6b3a02ca0cc
+
