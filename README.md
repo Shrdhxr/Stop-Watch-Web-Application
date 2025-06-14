@@ -4,12 +4,12 @@ A clean and lightweight stopwatch application built using HTML, CSS, and JavaScr
 
 ## Features
 
--Start / Pause / Reset the timer
+- Start / Pause / Reset the timer
 
--Record Lap times
+- Record Lap times
 
--Displays total elapsed time and individual lap durations
+- Displays total elapsed time and individual lap durations
 
--Highlights fastest and slowest laps with color indicators
+- Highlights fastest and slowest laps with color indicators
 
--Accurate up to milliseconds
+- Accurate up to milliseconds
