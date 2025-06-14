@@ -1,5 +1,4 @@
-# PRODIGY_WD_02
-Prodigy InfoTech Web Development Task-02 Stop Watch
+# Stop Watch Web Application
 
-This is my code for the internship task of making a stop watch.
-I have used HTML, CSS and JavaScript to complete the task.
+This application was developed using HTML, CSS and JavaScript.
+It helped me practise my Vanilla JS and logical reasoning.
